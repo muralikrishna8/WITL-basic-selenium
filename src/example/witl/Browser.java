@@ -1,5 +1,6 @@
 package example.witl;
 
+import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -22,6 +23,16 @@ public class Browser {
         loginButton.click();
 
         Thread.sleep(3000);
+
+        WebElement userNameError = driver.findElement(By.cssSelector("div[data-ownerid='email'] .uiContextualLayerRight"));
+
+        String actualMessage = userNameError.getText();
+
+        System.out.println(actualMessage);
+        Assert.assertEquals("Should give the username wrong error message",
+                "The email address or phone number that you've entered doesn't match any account. Sign up for an account.\n" +
+                "Close pop-up and return", actualMessage);
+
         driver.quit();
     }
 }
