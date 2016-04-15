@@ -14,24 +14,24 @@ public class Browser {
 
         Thread.sleep(5000);
         WebElement userInputBox = driver.findElement(By.id("email"));
-        userInputBox.sendKeys("username");
+        userInputBox.sendKeys("username");//give proper username
 
         WebElement passwordBox = driver.findElement(By.id("pass"));
-        passwordBox.sendKeys("password");
+        passwordBox.sendKeys("password");//give proper password
 
         WebElement loginButton = driver.findElement(By.id("loginbutton"));
         loginButton.click();
 
         Thread.sleep(3000);
 
-        WebElement userNameError = driver.findElement(By.cssSelector("div[data-ownerid='email'] .uiContextualLayerRight"));
+        WebElement profile = driver.findElement(By.cssSelector("div[data-click='profile_icon']"));
 
-        String actualMessage = userNameError.getText();
+        String actualProfileName = profile.getText();
+        String expectedProfileName = "username";//give you username, which will be displayed on top right of facebook
 
-        System.out.println(actualMessage);
-        Assert.assertEquals("Should give the username wrong error message",
-                "The email address or phone number that you've entered doesn't match any account. Sign up for an account.\n" +
-                "Close pop-up and return", actualMessage);
+        System.out.println(actualProfileName);
+        Assert.assertEquals("Should login successfully and verify profile name",
+                expectedProfileName, actualProfileName);
 
         driver.quit();
     }
