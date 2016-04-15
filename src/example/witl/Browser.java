@@ -1,6 +1,8 @@
 package example.witl;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.firefox.FirefoxDriver;
 
 public class Browser {
@@ -10,7 +12,9 @@ public class Browser {
         driver.get(basePage);
 
         Thread.sleep(5000);
-
+        WebElement userInputBox = driver.findElement(By.id("email"));
+        userInputBox.sendKeys("username");
+        Thread.sleep(3000);
         driver.quit();
     }
 }
