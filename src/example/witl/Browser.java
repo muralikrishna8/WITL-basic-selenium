@@ -1,6 +1,5 @@
 package example.witl;
 
-import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -12,19 +11,19 @@ public class Browser {
         String basePage = "https://www.facebook.com";
         driver.get(basePage);
 
-        Thread.sleep(5000);
-        WebElement userInputBox = driver.findElement(By.id("email"));
+        Thread.sleep(3000);
+        WebElement userInputBox = driver.findElement(By.xpath(".//input[@id='email']"));
         userInputBox.sendKeys(username);
 
-        WebElement passwordBox = driver.findElement(By.id("pass"));
+        WebElement passwordBox = driver.findElement(By.xpath(".//input[@id='pass']"));
         passwordBox.sendKeys(password);
 
-        WebElement loginButton = driver.findElement(By.id("loginbutton"));
+        WebElement loginButton = driver.findElement(By.xpath(".//*[@id='loginbutton']"));
         loginButton.click();
 
         Thread.sleep(3000);
 
-        WebElement profile = driver.findElement(By.cssSelector("div[data-click='profile_icon']"));
+        WebElement profile = driver.findElement(By.xpath(".//*[@data-click='profile_icon']/a/span"));
 
         String actualProfileName = profile.getText();
         driver.quit();
